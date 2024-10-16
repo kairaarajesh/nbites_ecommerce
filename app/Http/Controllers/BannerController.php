@@ -116,19 +116,23 @@ class BannerController extends Controller
         $this->validate($request,[
             'title'=>'string|required|max:50',
             'description'=>'string|nullable',
+            // 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'status'=>'required|in:active,inactive',
         ]);
-        try {
-            $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
-        } catch (\Exception $e) {
-            // Handle the exception if upload fails
-            request()->session()->flash('error', 'Failed to upload image to Cloudinary: ' . $e->getMessage());
-            return redirect()->route('banner.index');
-        }
         $data=$request->all();
-        $data['photo'] = $uploadedFileUrl;
-
+        if ($request->hasFile('photo')) {
+            try {
+                $uploadedFileUrl = Cloudinary::upload(
+                    $request->file('photo')->getRealPath()
+                )->getSecurePath();
+                $data['photo'] = $uploadedFileUrl;
+            } catch (\Exception $e) {
+                // Handle the exception if the upload fails
+                request()->session()->flash('error', 'Failed to upload image to Cloudinary: ' . $e->getMessage());
+                return redirect()->route('banner.index');
+            }
+        }
         $status=$banner->fill($data)->save();
         if($status){
             request()->session()->flash('success','Banner successfully updated');

@@ -168,16 +168,17 @@ class ProductController extends Controller
             'price'=>'required|numeric',
             'discount'=>'nullable|numeric'
         ]);
-        try {
-            $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
-        } catch (\Exception $e) {
-            // Handle the exception if upload fails
-            request()->session()->flash('error', 'Failed to upload image to Cloudinary: ' . $e->getMessage());
-            return redirect()->route('banner.index');
-        }
         $data=$request->all();
-        $data['photo'] = $uploadedFileUrl;
-
+        if ($request->hasFile('photo')) {
+            try {
+                $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
+                $data['photo'] = $uploadedFileUrl;
+            } catch (\Exception $e) {
+                // Handle the exception if the upload fails
+                request()->session()->flash('error', 'Failed to upload image to Cloudinary: ' . $e->getMessage());
+                return redirect()->route('product.index');
+            }
+        }
         $data['is_featured']=$request->input('is_featured',0);
         $size=$request->input('size');
         if($size){
