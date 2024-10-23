@@ -146,8 +146,8 @@ return [
          */
         CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
 
-
         // Laravel Framework Service Providers
+        Laravel\Sanctum\SanctumServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -239,7 +239,7 @@ return [
         // 'Image' => Intervention\Image\Facades\Image::class,
 
         // Third-Party Aliases
-         'PDF' => Barryvdh\DomPDF\Facade::class,
+        //  'PDF' => Barryvdh\DomPDF\Facade::class,
         'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 

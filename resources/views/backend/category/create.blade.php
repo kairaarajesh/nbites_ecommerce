@@ -5,8 +5,9 @@
 <div class="card">
     <h5 class="card-header">Add Category</h5>
     <div class="card-body">
-      <form method="post" action="{{route('category.store')}}">
+      <form method="post" enctype="multipart/form-data" action="{{route('category.store')}}">
         {{csrf_field()}}
+        @csrf
         <div class="form-group">
           <label for="inputTitle" class="col-form-label">Title <span class="text-danger">*</span></label>
           <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="{{old('title')}}" class="form-control">
@@ -47,7 +48,7 @@
                   <i class="fa fa-picture-o"></i> Choose
                   </a>
               </span>
-          <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">
+          <input id="thumbnail" class="form-control" type="text" name="photo" id="image" value="{{old('photo')}}">
         </div>
         <div id="holder" style="margin-top:15px;max-height:100px;"></div>
 

@@ -14,7 +14,10 @@ class BannerController extends Controller
     {
 
         $banners = Banner::all();
-        return response()->json($banners);
+        return response()->json([
+            "message" => "List of banner",
+            "data" => $banners
+        ]);
     }
     public function store(Request $request)
     {

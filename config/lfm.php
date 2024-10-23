@@ -25,6 +25,7 @@ return [
     | If both options are set to false, then shared folder will be activated.
     |
      */
+       'disk' => 'cloudinary',
 
     'allow_private_folder'     => true,
 
@@ -39,6 +40,12 @@ return [
 
     'shared_folder_name'       => 'shares',
 
+
+    'allow_multi_user' => false,
+   'allow_private_folder' => false,
+    'base_directory' => 'public',
+    'valid_image_mime' => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'],
+
     /*
     |--------------------------------------------------------------------------
     | Folder Names
@@ -52,7 +59,7 @@ return [
             'max_size'     => 50000, // size in KB
             'valid_mime'   => [
                 'image/jpeg',
-                'image/pjpeg',
+                'image/jpeg',
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
@@ -64,7 +71,7 @@ return [
             'max_size'     => 50000, // size in KB
             'valid_mime'   => [
                 'image/jpeg',
-                'image/pjpeg',
+                'image/jpeg',
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
@@ -121,8 +128,9 @@ return [
     // Create thumbnails automatically only for listed types.
     'raster_mimetypes'         => [
         'image/jpeg',
-        'image/pjpeg',
+        'image/jpg',
         'image/png',
+        'image/gif',
     ],
 
     'thumb_img_width'          => 200, // px
@@ -162,6 +170,9 @@ return [
     | directives are not supported.
      */
     'php_ini_overrides'        => [
-        'memory_limit' => '256M',
+        // 'memory_limit' => '256M',
+        'max_file_size' => 2048,
     ],
+    'middleware' => ['web', 'auth'],
+
 ];

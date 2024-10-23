@@ -6,7 +6,7 @@
     <h5 class="card-header">Edit User</h5>
     <div class="card-body">
       <form method="post" action="{{route('users.update',$user->id)}}">
-        @csrf 
+        @csrf
         @method('PATCH')
         <div class="form-group">
           <label for="inputTitle" class="col-form-label">Name</label>
@@ -23,7 +23,13 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
-
+        <div class="form-group">
+            <label for="inputEmail" class="col-form-label">Phone</label>
+          <input id="inputEmail" type="number" name="phone" placeholder="Enter phone"  value="{{$user->phone}}" class="form-control">
+          @error('phone')
+          <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
         {{-- <div class="form-group">
             <label for="inputPassword" class="col-form-label">Password</label>
           <input id="inputPassword" type="password" name="password" placeholder="Enter password"  value="{{$user->password}}" class="form-control">
@@ -47,7 +53,7 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
-        @php 
+        @php
         $roles=DB::table('users')->select('role')->where('id',$user->id)->get();
         // dd($roles);
         @endphp

@@ -27,7 +27,7 @@
               {{-- <th>Size</th> --}}
               <th>Condition</th>
               <th>Brand</th>
-              <th>Stock</th>
+              <th>quantity</th>
               <th>Photo</th>
               <th>Status</th>
               <th>Action</th>
@@ -44,7 +44,7 @@
               {{-- <th>Size</th> --}}
               <th>Condition</th>
               <th>Brand</th>
-              <th>Stock</th>
+              <th>quantity</th>
               <th>Photo</th>
               <th>Status</th>
               <th>Action</th>

@@ -8,6 +8,7 @@ use App\Http\Controllers\API\brandController;
 use App\Http\Controllers\API\organicController;
 // use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\api\UserController;
 use App\Http\Resources\product\ProductCollection;
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('register', [UserController::class, 'register']);
+Route::get('login', [UserController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('user', [UserController::class, 'userInfo']);
+    Route::post('logout', [UserController::class, 'logout']);
+});
 
 Route::get('banner', [BannerController::class, 'index']);
 Route::post('banner', [BannerController::class, 'store']);

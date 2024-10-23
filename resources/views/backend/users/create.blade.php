@@ -5,7 +5,7 @@
 <div class="card">
     <h5 class="card-header">Add User</h5>
     <div class="card-body">
-      <form method="post" action="{{route('users.store')}}">
+      <form method="get" action="{{route('users.store')}}">
         {{csrf_field()}}
         <div class="form-group">
           <label for="inputTitle" class="col-form-label">Name</label>
@@ -22,6 +22,13 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
+        <div class="form-group">
+            <label for="inputEmail" class="col-form-label">phone</label>
+          <input id="inputEmail" type="number" name="phone" placeholder="Enter phone"  value="{{old('phone')}}" class="form-control">
+          @error('email')
+          <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
 
         <div class="form-group">
             <label for="inputPassword" class="col-form-label">Password</label>
@@ -31,22 +38,7 @@
           @enderror
         </div>
 
-        <div class="form-group">
-        <label for="inputPhoto" class="col-form-label">Photo</label>
-        <div class="input-group">
-            <span class="input-group-btn">
-                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                <i class="fa fa-picture-o"></i> Choose
-                </a>
-            </span>
-            <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">
-        </div>
-        <img id="holder" style="margin-top:15px;max-height:100px;">
-          @error('photo')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        @php 
+        @php
         $roles=DB::table('users')->select('role')->get();
         @endphp
         <div class="form-group">

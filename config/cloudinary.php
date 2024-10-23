@@ -21,6 +21,7 @@ return [
     */
     'notification_url' => env('CLOUDINARY_NOTIFICATION_URL'),
 
+    'cloud_url' => env('CLOUDINARY_URL', 'cloudinary://166179632921848:D_BcU_xVYqRmOrKEL0sJGrkSEwo@dspp2vqid'),
 
     /*
     |--------------------------------------------------------------------------

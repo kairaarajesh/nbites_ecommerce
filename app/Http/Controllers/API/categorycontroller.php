@@ -12,7 +12,12 @@ class categorycontroller extends Controller
     public function index()
     {
         $categories = Category::all();
-        return response()->json($categories);
+
+        // Return the categories with a message as JSON response
+        return response()->json([
+            "message" => "List of category",
+            "data" => $categories
+        ]);
     }
     public function store(Request $request)
     {

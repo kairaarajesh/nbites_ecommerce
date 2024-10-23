@@ -14,8 +14,8 @@ class ProductCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'data' => $this->collection->transform(function($product) {
+        return
+             $this->collection->transform(function($product) {
                 return [
                     'id'=>$product->id,
                     'title' => $product->title,
@@ -23,12 +23,25 @@ class ProductCollection extends ResourceCollection
                     // 'rating' => $product->reviews->count() > 0
                         //  ? round($product->reviews->sum('star') / $product->reviews->count(), 2)
                     //     : 'No rating yet',
+                    // 'desc' => $product->summary,
+                    'description' => $product->description,
                     'price' => $product->price,
-                    'discount' => $product->discount,
-                    'photo' => $product->photo,
+                    // 'discount' => $product->discount,
+                    'img' => $product->photo,
+                    'total_quantity' => $product->stock,
+                    // 'size' => $product->size,
+                    'status' => $product->status,
+                    'reduction' => $product->discount,
+                    'is_featured' => $product->is_featured,
+                    'categorie_id ' => $product->cat_id,
+                    'child_cat_id ' => $product->child_cat_id,
+                    'brand_id ' => $product->brand_id,
+                    'rating' => $product->product_reviews && $product->product_reviews->count() > 0
+                    ? round($product->product_reviews->sum('star') / $product->product_reviews->count(), 2)
+                    : "No rating yet",
 
                 ];
             })
-        ];
+        ;
     }
 }

@@ -15,6 +15,7 @@ return [
 
     'default' => env('FILESYSTEM_DRIVER', 'local'),
 
+    'default' => env('FILESYSTEM_DRIVER', 'cloudinary'),
     'max_upload_filesize' => env('MAX_UPLOAD_SIZE', 5120),
     /*
     |--------------------------------------------------------------------------
@@ -65,8 +66,10 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
-
-    ],
+        'cloudinary' => [
+        'driver' => 'cloudinary',
+        ],
+   ],
 
     /*
     |--------------------------------------------------------------------------

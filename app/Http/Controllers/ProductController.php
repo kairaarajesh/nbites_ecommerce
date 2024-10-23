@@ -20,8 +20,7 @@ class ProductController extends Controller
         $product = Product::all();
 
         return response()->json([
-            'status' => 'success',
-            'message' => 'Products retrieved successfully',
+            'message' => 'List of products',
             'data' => new ProductCollection($product),
         ], 200);
     }
