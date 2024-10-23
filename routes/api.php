@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [UserController::class, 'logout']);
 });
 
-Route::get('banner', [BannerController::class, 'index']);
+Route::get('slider', [BannerController::class, 'index']);
 Route::post('banner', [BannerController::class, 'store']);
 Route::get('banner/{id}', [BannerController::class, 'show']);
 Route::put('banner/{id}', [BannerController::class, 'update']);
